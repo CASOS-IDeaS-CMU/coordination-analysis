@@ -1,5 +1,5 @@
 {
-    "input_data" : "/storage3/us_election_2020/by_race/chinese",
+    "input_data" : "/storage3/COVID_openup",
     "api_version" : "V1",
     "time_window_minutes" : 5,
     "output_data" : "results.csv",
