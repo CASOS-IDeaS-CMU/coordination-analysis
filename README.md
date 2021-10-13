@@ -7,11 +7,14 @@ Magelinski, T., Ng, L. H. X., & Carley, K. M. (2021). [A Synchronized Action Fra
 
 ```
 
-Input: 
-    Single Twitter V1 or V2 .json file, or a directory of these files
-    Timewindow to consider (in minutes)
+Input (in CONFIG.json): 
+    - Either a single .json or .json.gz file, or a directory containing many of these files
+    - The API version used to get the twitter data "V1" or "V2" (all files need to be the same type)
+    - Timewindow to consider (in minutes)
+    - Filename to write edgelist to (must be .csv)
+    - action_types, a list of the action types to consider. The available options are url, hashtag, mention, and combined. Where combined looks at url-hashtag combination
+
 Output: 
     .csv containing a weighted multi-view edgelist where actors are linked based on the number of times they took the same action within the time-window
 
 To run: 
-Change lines 13 and 14 of `general_coordination_output.py` to your data and output directory
