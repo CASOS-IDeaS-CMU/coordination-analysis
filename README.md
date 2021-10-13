@@ -17,7 +17,7 @@ Output:
 - A .csv containing a weighted multi-view edgelist where actors are linked based on the number of times they took the same action within the time-window
 
 To run: 
-1. Create a new python enviornment `python3 -m venv venv`
+1. Create a new python environment `python3 -m venv venv`
 2. Activate it. In windows: `venv\Scripts\Activate.bat` or Mac/Linux: `source venv\bin\activate`
 3. Install dependencies: `pip install -r requirements.txt`
 4. Edit `CONFIG.json` with your parameters
