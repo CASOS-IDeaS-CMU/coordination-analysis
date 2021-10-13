@@ -76,15 +76,17 @@ def getTime(tweet):
     time = datetime.datetime.strptime(tweet['created_at'], created_at_format)
     return time
 
+
 def getTime_v2(tweet):
-    tweet_created_at = tweet['created_at'].replace('.000', '')
     created_at_format = '%Y-%m-%dT%H:%M:%SZ'
+    tweet_created_at = tweet['created_at'].replace('.000', '')
     time = datetime.datetime.strptime(tweet_created_at, created_at_format)
     return time
 
-def processTweet(tweet, names):
+
+def processTweet(tweet, nameLookup):
     user = tweet['user']['id']
-    names[user] = tweet['user']['screen_name']
+    nameLookup[user] = tweet['user']['screen_name']
     time = getTime(tweet)
     urls = get_urls(tweet)
     hashtags = get_hashtags(tweet)
@@ -98,7 +100,8 @@ def processTweet(tweet, names):
     users = [user] * len(types)
     times = [time] * len(types)
     ids = [tweet['id']] * len(types)
-    return users, times, links, types, names, ids
+    return users, times, links, types, ids, nameLookup 
+
 
 def processTweet_v2(tweet, names, user_data):
     user = tweet['author_id']
@@ -117,11 +120,13 @@ def processTweet_v2(tweet, names, user_data):
     ids = [tweet['id']] * len(types)
     return users, times, links, types, names, ids
 
-def edge2df(edges, name_dict):
+
+def edge2df(edges, name_dict=None):
     edge_df = pd.DataFrame(edges.keys(), columns=['source', 'target'])
     edge_df['weight'] = edges.values()
-    edge_df['source'] = edge_df['source'].apply(lambda x: name_dict[x])
-    edge_df['target'] = edge_df['target'].apply(lambda x: name_dict[x])
+    if name_dict:
+        edge_df['source'] = edge_df['source'].apply(lambda x: name_dict[x])
+        edge_df['target'] = edge_df['target'].apply(lambda x: name_dict[x])
     edge_df = edge_df[edge_df['source'] != edge_df['target']]
     edge_df.reset_index(drop=True, inplace=True)
     return edge_df
