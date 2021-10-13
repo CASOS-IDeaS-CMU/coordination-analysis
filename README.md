@@ -2,10 +2,8 @@
 
 Constructing multi-view synchronized action networks of Twitter users.
 
-```
+The method is described in detail in the paper:
 Magelinski, T., Ng, L. H. X., & Carley, K. M. (2021). [A Synchronized Action Framework for Responsible Detection of Coordination on Social Media](https://arxiv.org/abs/2105.07454). MAISoN’21: Mining Actionable Insights from Social Networks.
-
-```
 
 Input (in CONFIG.json): 
     - Either a single .json or .json.gz file, or a directory containing many of these files
